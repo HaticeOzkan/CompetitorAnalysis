@@ -1,0 +1,38 @@
+﻿@using Entity
+@model List<Product>
+
+<h2>Products</h2>
+
+<a href="/Product/Create">Create New Product</a>
+
+<style>
+	td, th {
+		padding: 10px;
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<thead>
+		<tr>
+			<th>Product Name</th>
+			<th>Groups</th>
+			<th>Brand</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.ProductName</td>
+				<td>@string.Join(",",item.ProductGroups.Select(x => x.GroupName))</td> @*string.Join() -> stringleri birleştiren bir metod*@
+				<td>@item.Brand.BrandName</td>
+				<td>
+					<a href="/Product/Edit/@item.ID">Edit</a>
+					<a href="?delete=@item.ID">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

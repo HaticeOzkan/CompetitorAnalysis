@@ -1,0 +1,33 @@
+﻿@using Entity
+@model List<ProductGroup>
+
+<h2>Index</h2>
+
+<a href="/ProductGroup/Create" class="btn btn-success">Create New Group</a>
+
+<style>
+	th, td {
+		padding: 20px;
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<tr>
+		<th>Group Name</th>
+		<th>Top Group</th>
+		<th>Action</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.GroupName</td>
+			<td>@Html.Raw(item.TopProductGroup == null ? "-" : item.TopProductGroup.GroupName)</td>
+			<td>
+				<a href="/ProductGroup/Index?delete=@item.ID">Delete</a>
+				<a href="/ProductGroup/Edit/@item.ID">Edit</a>
+				@*<a href="/ProductGroup/Edit/?id=@item.ID">Edit</a> bununla üstteki aynı anlama geliyor. id diye belirtmesek de routeconfigde onun id olduğu belli olduğu için anlar*@
+			</td>
+		</tr>
+	}
+</table>

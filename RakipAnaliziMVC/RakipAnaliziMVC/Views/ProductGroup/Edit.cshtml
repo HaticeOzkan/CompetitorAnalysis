@@ -1,0 +1,22 @@
+﻿@using Entity
+@model ProductGroup
+
+<h2>Edit</h2>
+
+<form method="post">
+	<div class="form-group">
+		<input name="GroupName" class="form-control" value="@Model.GroupName" />
+	</div>
+	<div class="form-group">
+		<select name="TopGroupId">
+			<option value="">-</option>
+			@foreach (ProductGroup item in ViewBag.Groups)
+			{
+				bool isSelected = item.ID == Model.TopGroupId;
+				string attr = isSelected ? "Selected" : "";
+				<option value="@item.ID" @attr>@item.GroupName</option>
+			}
+		</select>
+	</div>
+	<button>Save</button>
+</form>

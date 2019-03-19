@@ -1,0 +1,11 @@
+﻿@using Entity
+@model Brand
+
+<h2>Edit Brand</h2>
+
+<form method="post">
+	<input type="hidden" name="BrandID" value="@Model.ID" />
+	<input name="BrandName" class="form-control" value="@Model.BrandName" />
+
+	<button>Save</button>
+</form>

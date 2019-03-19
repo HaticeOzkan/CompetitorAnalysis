@@ -1,0 +1,50 @@
+﻿@using Entity
+@model List<CompetitorAnalysis>
+<style>
+	.kutu {
+		margin: 10px;
+		border: 1px solid black;
+	}
+
+	td {
+		padding: 5px;
+	}
+</style>
+
+<h2>Registry</h2>
+
+<a href="/CompetitorAnalysis/Create">Create New Registry</a>
+
+<div class="container">
+	<div class="row">
+		@foreach (var item in Model)
+		{
+			<div class="col-md-3">
+				<div class="kutu">
+					<h3>@item.Month / @item.Year</h3>
+					<table>
+						@{
+							var list = from reg in item.Registries
+									   group reg by reg.Product into g //gruplanmış veriden g diye bahsettik ve ürüne göre gruladık
+									   select new
+									   {
+										   Product = g.Key,
+										   SalesCount = g.Sum(x => x.SalesCount)
+									   };
+						}
+
+							@foreach (var r in item.Registries) //kayıtlarda dolaşıyoruz
+						{
+							<tr>
+								<td>@r.Product.Brand.BrandName</td>
+								<td>@r.Product.ProductName</td>
+								<td>@r.SalesCount</td>
+							</tr>
+						}
+					</table>
+				</div>
+			</div>
+		}
+
+	</div>
+</div>

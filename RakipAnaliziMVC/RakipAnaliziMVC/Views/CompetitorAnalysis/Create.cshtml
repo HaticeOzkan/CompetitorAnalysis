@@ -1,0 +1,20 @@
+﻿@using Entity
+
+<h2>New Competitor Analysis</h2>
+
+<a href="/CompetitorAnalysis">Back All Analysis</a>
+
+<form method="post">
+	<div class="form-group">
+		<select name="ProductId"> @*bu productid modelimizde yok*@
+			@foreach (Product item in ViewBag.Products)
+			{
+				<option value="@item.ID">@item.ProductName</option>
+			}
+		</select>
+	</div>
+	<div class="form-group">
+		<input name="SalesCount" type="number" class="form-control" />
+	</div>
+	<button>Save</button>
+</form>
